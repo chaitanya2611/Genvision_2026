@@ -13,7 +13,7 @@ export default function Guests() {
 
   return (
     <div className="p-5">
-      <h1 className="text-center mb-5 fw-bold text-primary">🎤 Special Guests</h1>
+      <h1 className="text-center mb-5 fw-bold text-white">Special Guests</h1>
 
       {guests.length === 0 ? (
         <p className="text-center text-muted">No guests added yet...</p>

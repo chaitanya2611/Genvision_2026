@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import API from "../api";
 import { Carousel } from "react-bootstrap";
-import "../css/about.css" // Make sure react-bootstrap is installed
+import "../css/about.css";
+import Countdown from "./CountDown";
 
 export default function AboutPage() {
   const [about, setAbout] = useState(null);
   const [flipped, setFlipped] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  // Fetch About data
+  // Fetch About Data
   useEffect(() => {
     const fetchAbout = async () => {
       try {
@@ -21,7 +22,15 @@ export default function AboutPage() {
     fetchAbout();
   }, []);
 
-  // Handle resize for responsive
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    API.get("/events")
+      .then((res) => setEvents(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  // Handle window resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
@@ -31,6 +40,7 @@ export default function AboutPage() {
   if (!about) return <p>Loading...</p>;
 
   const baseURL = "http://localhost:5000";
+  const eventDate = "2026-01-18T11:59:59";
 
   // LazyImage Component
   const LazyImage = ({ src, alt, style, className }) => {
@@ -61,7 +71,7 @@ export default function AboutPage() {
   return (
     <div>
     <div className="container my-5">
-      {/* Poster + Description */}
+      {/* Hero Section: Poster + Description */}
       <div
         style={{
           display: "flex",
@@ -71,8 +81,7 @@ export default function AboutPage() {
           marginBottom: "30px",
         }}
       >
-        { !isMobile ? (
-          // Desktop layout
+        {!isMobile ? (
           <div
             style={{
               display: "flex",
@@ -98,32 +107,15 @@ export default function AboutPage() {
                 }}
               >
                 <img
-                  src={
-                    about.poster.startsWith("http")
-                      ? about.poster
-                      : baseURL + about.poster
-                  }
+                  src={about.poster.startsWith("http") ? about.poster : baseURL + about.poster}
                   alt="Poster"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    borderRadius: "12px",
-                  }}
+                  style={{ width: "100%", height: "auto", display: "block", borderRadius: "12px" }}
                 />
               </div>
             )}
 
             {/* Description */}
-            <div
-              style={{
-                flex: 1,
-                minWidth: "250px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-              }}
-            >
+            <div style={{ flex: 1, minWidth: "250px", display: "flex", flexDirection: "column" }}>
               <p
                 style={{
                   fontSize: "1.5rem",
@@ -142,17 +134,7 @@ export default function AboutPage() {
             </div>
           </div>
         ) : (
-          // Mobile flip-card layout
-          <div
-            style={{
-              perspective: "1000px",
-              maxWidth: "400px",
-              margin: "0 auto 30px",
-              borderRadius: "12px",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-              alignItems: "flex-start",
-            }}
-          >
+          <div style={{ perspective: "1000px", maxWidth: "400px", margin: "0 auto 30px", borderRadius: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}>
             <div
               onClick={() => setFlipped((prev) => !prev)}
               style={{
@@ -166,25 +148,11 @@ export default function AboutPage() {
               }}
             >
               {/* Front: Image */}
-              <div
-                style={{
-                  backfaceVisibility: "hidden",
-                  width: "100%",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                }}
-              >
+              <div style={{ backfaceVisibility: "hidden", width: "100%", borderRadius: "12px", overflow: "hidden" }}>
                 <img
-                  src={
-                    about.poster.startsWith("http")
-                      ? about.poster
-                      : baseURL + about.poster
-                  }
+                  src={about.poster.startsWith("http") ? about.poster : baseURL + about.poster}
                   alt="Poster"
-                  style={{
-                    width: "100%",
-                    display: "block",
-                  }}
+                  style={{ width: "100%", display: "block" }}
                 />
               </div>
 
@@ -203,17 +171,7 @@ export default function AboutPage() {
                   boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                 }}
               >
-                <p
-                  className="description"
-                  style={{
-                    fontSize: "1rem",
-                    lineHeight:"1.7rem",
-                    color: "#333",
-                    textAlign: "justify",
-                    margin: 0,
-                    borderRadius: "12px",
-                  }}
-                >
+                <p style={{ fontSize: "1rem", lineHeight: "1.7rem", color: "#333", textAlign: "justify", margin: 0 }}>
                   {about.description}
                 </p>
               </div>
@@ -222,77 +180,64 @@ export default function AboutPage() {
         )}
       </div>
 
-      {/* Schedule */}
-      <h3>Schedule</h3>
-      <ul className="list-group mb-4">
-        {about.schedule.map((s, idx) => (
-          <li key={idx} className="list-group-item">
-            {s.date} - {s.event} ({s.time})
-          </li>
-        ))}
-      </ul>
+      {/* Countdown Section */}
+      <Countdown targetDate={eventDate} />
 
-      {/* Gallery Carousel */}
+      {/* Events */}
+      <div className="row g-4" style={{marginTop:"5%"}}>
+        {events.map((c) => (
+          <div key={c._id} className="col-md-6 col-lg-3">
+            <div className="bg-white shadow p-4 rounded border border-gray-200">
+              {c.image && (
+              <img
+  src={`http://localhost:5000${c.image}`}
+  alt={c.name}
+  className="card-img-top img-fluid "
+  // style={{height: "500px"}}
+/>
+              )}
+              {/* <h4 className="text-lg fw-semibold">{c.name}</h4>
+              <p className="text-muted">{c.designation}</p>
+              <p className="text-muted small mt-1">{c.contact}</p> */}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Gallery */}
       {about.gallery.length > 0 && (
-        <Carousel
-          className="mb-4"
-          interval={3000}
-          pause="hover"
-          style={{ borderRadius: "20px", overflow: "hidden" }}
-        >
+        <Carousel className="mb-4" interval={2000} pause="hover" style={{ borderRadius: "20px", marginTop:"10%", overflow: "hidden" }}>
           {about.gallery.map((img, idx) => (
             <Carousel.Item key={idx}>
               <LazyImage
                 src={img}
                 alt={`Gallery ${idx}`}
-                style={{
-                  width: "100%",
-                  height: "500px",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                }}
+                style={{ width: "100%", height: "500px", objectFit: "cover", borderRadius: "20px" }}
               />
             </Carousel.Item>
           ))}
         </Carousel>
       )}
-      </div>    
 
-      {/* Sponsors */}
-      <div style={{backgroundColor:"#fff", width:"100%", padding:0, marginBottom:"4%"}}>
-      <h3 className="mt-4 mb-2 text-center" style={{paddingTop:"2%"}}>Sponsors</h3>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "24px",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "10px 0",
-        }}
-      >
-        {about.sponsors.map((s, idx) => (
-          <div
-            key={idx}
-            style={{
-              flex: "0 0 140px",
-              textAlign: "center",
-            }}
-          >
-            <LazyImage
-              src={s.logo}
-              alt={s.name}
-              style={{
-                borderRadius: "8px",
-                objectFit: "contain",
-                backgroundColor: "#f0f0f0",
-              }}
-            />
-          </div>
-        ))}
-      </div>
+      
     </div>
+          {/* Sponsors */}
+      <div style={{ backgroundColor: "#fff", width: "100%", padding: 0, marginBottom: "4%" }}>
+        <h3 className="mt-4 mb-2 text-center" style={{ paddingTop: "2%" }}>
+          Sponsors
+        </h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "24px", justifyContent: "center", alignItems: "center", padding: "10px 0" }}>
+          {about.sponsors.map((s, idx) => (
+            <div key={idx} style={{ flex: "0 0 140px", textAlign: "center" }}>
+              <LazyImage
+                src={s.logo}
+                alt={s.name}
+                style={{ borderRadius: "8px", objectFit: "contain", backgroundColor: "#f0f0f0" }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
-
