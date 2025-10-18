@@ -109,7 +109,7 @@ export default function Footer() {
 
       {/* Copyright Section */}
       <div style={{ textAlign: "center", marginTop: "20px" }}>
-        &copy; Symbiotek Council 2025
+        &copy; Symbiotek Council 2026
       </div>
     </footer>
   );

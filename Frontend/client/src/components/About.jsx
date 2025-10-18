@@ -186,7 +186,7 @@ export default function AboutPage() {
       {/* Events */}
       <div className="row g-4" style={{marginTop:"5%"}}>
         {events.map((c) => (
-          <div key={c._id} className="col-md-6 col-lg-3">
+          <div key={c._id} className="col-md-6 col-lg-4">
             <div className="bg-white shadow p-4 rounded border border-gray-200">
               {c.image && (
               <img
