@@ -1,6 +1,6 @@
 /* 🏞️ Hero Section */
 .hero-section {
-  background-image: url("../../../../Backend/server/uploads/about\ -\ Copy.jpeg");
+  background-image: url("../../public/about\ -\ Copy.jpeg");
   filter: contrast(1) brightness(1);
   background-size: cover;
   background-position: center;
@@ -62,7 +62,7 @@
 
 /* 🌆 Second Background */
 .background-main {
-  background-image: url("../../../../Backend/server/uploads/mainpage.png");
+  background-image: url("../../public/mainpage.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
