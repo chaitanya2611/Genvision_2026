@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
+    "express": "^5.1.0",
+    "path-to-regexp": "^8.3.0",
     "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
     "react-circular-progressbar": "^2.2.0",
