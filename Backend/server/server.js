@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import { match } from "path-to-regexp";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,8 +43,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
 
-const matcher = match("/*", { decode: decodeURIComponent });
 
-app.get(matcher, (req, res) => {
+app.get(/^\/.*$/, (req, res) => {
   res.sendFile(path.join(__dirname, "Frontend/build", "index.html"));
 });
