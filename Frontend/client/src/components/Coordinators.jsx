@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
-import API from "../api"; // axios instance
+import API from "../api";
+import "../css/coordinators.css";
 
 export default function Coordinators() {
   const [coordinators, setCoordinators] = useState([]);
+  const [flippedId, setFlippedId] = useState(null); // फक्त एकच card flip होईल
 
-  // 🔄 Fetch coordinators on mount
   useEffect(() => {
     const fetchCoordinators = async () => {
       try {
@@ -18,28 +19,47 @@ export default function Coordinators() {
     fetchCoordinators();
   }, []);
 
+  const handleFlip = (id) => {
+    setFlippedId((prev) => (prev === id ? null : id)); // पुन्हा click केला तर flip बंद होईल
+  };
+
   return (
     <div className="container my-5">
-      <h2 className="text-center mb-4 fw-bold text-primary">
-        Meet Our Coordinators 👥
+      <h2 className="text-center mb-4 fw-bold" style={{fontFamily:"robot", color:"#fff"}}>
+        Meet Our Coordinators
       </h2>
 
-      {/* Coordinator Cards */}
       <div className="row g-4">
         {coordinators.map((c) => (
           <div key={c._id} className="col-md-6 col-lg-3">
-            <div className="bg-white shadow p-4 rounded border border-gray-200">
-              {c.image && (
-              <img
-  src={`http://localhost:5000${c.image}`}
-  alt={c.name}
-  className="card-img-top img-fluid "
-  // style={{height: "500px"}}
-/>
-              )}
-              {/* <h4 className="text-lg fw-semibold">{c.name}</h4>
-              <p className="text-muted">{c.designation}</p>
-              <p className="text-muted small mt-1">{c.contact}</p> */}
+            <div
+              className={`flip-card ${flippedId === c._id ? "flipped" : ""}`}
+              onClick={() => handleFlip(c._id)}
+            >
+              <div className="flip-card-inner shadow-lg">
+                {/* FRONT */}
+                <div className="flip-card-front bg-white border border-gray-200 front">
+                  {c.image && (
+                    <img
+                      src={`http://localhost:5000${c.image}`}
+                      alt={c.name}
+                      className="card-img-top img-fluid"
+                      style={{ height: "300px", objectFit: "cover" }}
+                    />
+                  )}
+                </div>
+
+                {/* BACK */}
+                <div className="flip-card-back d-flex flex-column justify-content-center align-items-center text-center rounded back">
+                  <div className="back-overlay back">
+                    <h4 className="fw-bold text-white mb-2">{c.name}</h4>
+                    <p className="text-light mb-1">{c.designation}</p>
+                    {/* <p className="text-warning small">{c.contact}</p> */}
+                    <div className="decor-line my-3"></div>
+                    <p className="small text-white-50">(Click to flip back)</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         ))}
@@ -47,4 +67,3 @@ export default function Coordinators() {
     </div>
   );
 }
-

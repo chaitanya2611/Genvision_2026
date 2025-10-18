@@ -83,10 +83,11 @@ export default function Navbar() {
             <ul className="navbar-nav text-center">
               <li className="nav-item"><Link className="nav-link text-black" to="/">About</Link></li>
               <li className="nav-item"><Link className="nav-link text-black" to="/Events">Events</Link></li>
-              <li className="nav-item"><Link className="nav-link text-black" to="/Participants">Participate</Link></li>
               <li className="nav-item"><Link className="nav-link text-black" to="/Coordinators">Coordinators</Link></li>
               <li className="nav-item"><Link className="nav-link text-black" to="/Guests">Guests</Link></li>
+              <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Participants">Join Us</Link></li>
             </ul>
+            
           </div>
         </div>
       </nav>

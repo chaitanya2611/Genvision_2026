@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../api";
+import "../css/guests.css"; // 👈 CSS इथे लिहायचं आहे
 
 export default function Guests() {
   const [guests, setGuests] = useState([]);
@@ -11,34 +12,30 @@ export default function Guests() {
   }, []);
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
-        🎤 Special Guests
-      </h1>
+    <div className="p-5">
+      <h1 className="text-center mb-5 fw-bold text-primary">🎤 Special Guests</h1>
 
       {guests.length === 0 ? (
-        <p className="text-center text-gray-500">No guests added yet...</p>
+        <p className="text-center text-muted">No guests added yet...</p>
       ) : (
-        <div className="row g-4">
-        {guests.map((c) => (
-          <div key={c._id} className="col-md-6 col-lg-3" style={{width:"400px"}}>
-            <div className="bg-white shadow p-4 rounded border border-gray-200">
-              {c.image && (
-              <img
-  src={`http://localhost:5000${c.image}`}
-  alt={c.name}
-  className="card-img-top img-fluid "
-  // style={{height: "500px"}}
-/>
-              )}
-              {/* <h4 className="text-lg fw-semibold">{c.name}</h4>
-              <p className="text-muted">{c.designation}</p>
-              <p className="text-muted">{c.description}</p>
-              <p className="text-muted small mt-1">{c.contact}</p> */}
+        <div className="d-flex flex-wrap gap-4">
+          {guests.map((g) => (
+            <div key={g._id} className="guest-card">
+              <div className="guest-img-wrapper">
+                <img
+                  src={`http://localhost:5000${g.image}`}
+                  alt={g.name}
+                  className="guest-img"
+                />
+                <div className="guest-overlay">
+                  <h4>{g.name}</h4>
+                  <p className="designation">{g.designation}</p>
+                  <p className="desc">{g.description}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       )}
     </div>
   );

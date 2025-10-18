@@ -108,3 +108,46 @@
     color: black;
   }
 }
+
+.register-btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 28px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #333;
+  background: #f8f8f8;
+  border: 2px solid #888;
+  border-radius: 25px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  letter-spacing: 0.5px;
+}
+
+.register-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(0, 0, 0, 0.4), transparent);
+  transition: all 0.5s ease;
+}
+
+.register-btn:hover::before {
+  left: 100%;
+}
+
+.register-btn:hover {
+  color: #111;
+  border-color: #000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  background: #fffdf5;
+  transform: translateY(-2px);
+}
+
+.register-btn:active {
+  transform: scale(0.98);
+}

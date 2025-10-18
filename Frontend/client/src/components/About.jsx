@@ -260,7 +260,7 @@ export default function AboutPage() {
 
       {/* Sponsors */}
       <div style={{backgroundColor:"#fff", width:"100%", padding:0, marginBottom:"4%"}}>
-      <h3 className="mt-4 mb-2">Sponsors</h3>
+      <h3 className="mt-4 mb-2 text-center" style={{paddingTop:"2%"}}>Sponsors</h3>
       <div
         style={{
           display: "flex",
