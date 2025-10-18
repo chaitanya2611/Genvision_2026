@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@fontsource/creepster": "^5.2.7",
     "@testing-library/dom": "^10.4.1",
