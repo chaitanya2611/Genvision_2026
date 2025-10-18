@@ -39,7 +39,7 @@ export default function AboutPage() {
 
   if (!about) return <p>Loading...</p>;
 
-  const baseURL = "http://localhost:5000";
+  const baseURL = "https://genvision-2026-1.onrender.com";
   const eventDate = "2026-01-18T11:59:59";
 
   // LazyImage Component
@@ -190,7 +190,7 @@ export default function AboutPage() {
             <div className="bg-white shadow p-4 rounded border border-gray-200">
               {c.image && (
               <img
-  src={`http://localhost:5000${c.image}`}
+  src={`https://genvision-2026-1.onrender.com{c.image}`}
   alt={c.name}
   className="card-img-top img-fluid "
   // style={{height: "500px"}}
