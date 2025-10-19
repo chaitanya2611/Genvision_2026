@@ -190,7 +190,7 @@ export default function AboutPage() {
             <div className="bg-white shadow p-4 rounded border border-gray-200">
               {c.image && (
               <img
-  src={`https://genvision-2026-1.onrender.com{c.image}`}
+  src={`https://genvision-2026-1.onrender.com/uploads/${c.image}`}
   alt={c.name}
   className="card-img-top img-fluid "
   // style={{height: "500px"}}

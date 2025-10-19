@@ -40,12 +40,18 @@ export default function Coordinators() {
                 {/* FRONT */}
                 <div className="flip-card-front bg-white border border-gray-200 front">
                   {c.image && (
-                    <img
-                      src={`https://genvision-2026-1.onrender.com${c.image}`}
-                      alt={c.name}
-                      className="card-img-top img-fluid"
-                      style={{ height: "300px", objectFit: "cover" }}
-                    />
+                      <img
+    src={
+      c.image.startsWith("http")
+        ? c.image
+        : c.image.startsWith("/uploads")
+        ? `https://genvision-2026-1.onrender.com${c.image}`
+        : `https://genvision-2026-1.onrender.com/uploads/${c.image}`
+    }
+    alt={c.name}
+    className="card-img-top img-fluid"
+    style={{ height: "300px", objectFit: "cover" }}
+  />
                   )}
                 </div>
 
