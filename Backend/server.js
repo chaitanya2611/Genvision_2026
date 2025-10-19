@@ -33,7 +33,7 @@ app.use("/api/guests", guestRoutes);
 app.use("/api/coordinators", coordinatorRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/about", aboutRouter);
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
