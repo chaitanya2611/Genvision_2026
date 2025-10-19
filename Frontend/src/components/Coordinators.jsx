@@ -41,7 +41,7 @@ export default function Coordinators() {
                 <div className="flip-card-front bg-white border border-gray-200 front">
                   {c.image && (
                     <img
-                      src={`http://localhost:5000${c.image}`}
+                      src={`https://genvision-2026-1.onrender.com${c.image}`}
                       alt={c.name}
                       className="card-img-top img-fluid"
                       style={{ height: "300px", objectFit: "cover" }}

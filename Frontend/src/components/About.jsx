@@ -39,7 +39,7 @@ export default function AboutPage() {
 
   if (!about) return <p>Loading...</p>;
 
-  const baseURL = "https://genvision-2026-1.onrender.com";
+  const baseURL = "https://genvision-2026-1.onrender.com/api";
   const eventDate = "2026-01-18T11:59:59";
 
   // LazyImage Component
