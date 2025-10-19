@@ -45,8 +45,8 @@ export default function Coordinators() {
       c.image.startsWith("http")
         ? c.image
         : c.image.startsWith("/uploads")
-        ? `https://genvision-2026-1.onrender.com${c.image}`
-        : `https://genvision-2026-1.onrender.com/uploads/${c.image}`
+        ? `https://genvision-2026.onrender.com${c.image}`
+        : `https://genvision-2026.onrender.com/uploads/${c.image}`
     }
     alt={c.name}
     className="card-img-top img-fluid"
