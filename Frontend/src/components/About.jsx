@@ -45,12 +45,12 @@ export default function AboutPage() {
   // LazyImage Component
   const LazyImage = ({ src, alt, style, className }) => {
     const [loaded, setLoaded] = useState(false);
-    const finalSrc = src.startsWith("http") ? src : baseURL + src;
+    // const finalSrc = src.startsWith("http") ? src : baseURL + src;
 
     return (
       <div style={{ backgroundColor: "#e0e0e0", ...style }}>
         <img
-          src={finalSrc}
+          src={`https://genvision-2026-1.onrender.com/${about.poster}`}
           alt={alt}
           loading="lazy"
           className={className}
