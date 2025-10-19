@@ -22,7 +22,7 @@ export default function EditAbout() {
         const sponsorsWithPreview = res.data.sponsors.map((s) => ({
           ...s,
           file: null,
-          logoPreview: s.logo ? `http://localhost:5000${s.logo}` : "",
+          logoPreview: s.logo ? `https://genvision-2026-1.onrender.com${s.logo}` : "",
         }));
         setForm({ ...res.data, sponsors: sponsorsWithPreview });
       } catch (err) {
@@ -149,7 +149,7 @@ export default function EditAbout() {
           />
           {form.poster && !posterFile && (
             <img
-              src={`http://localhost:5000${form.poster}`}
+              src={`https://genvision-2026-1.onrender.com${form.poster}`}
               alt="Poster"
               className="mt-3 rounded"
               style={{ width: "300px", objectFit: "cover" }}
@@ -191,7 +191,7 @@ export default function EditAbout() {
           {form.gallery.map((img, idx) => (
             <div key={idx} className="position-relative">
               <img
-                src={img.startsWith("blob:") ? img : `http://localhost:5000${img}`}
+                src={img.startsWith("blob:") ? img : `https://genvision-2026-1.onrender.com${img}`}
                 alt={`Gallery ${idx}`}
                 className="rounded shadow-sm"
                 style={{ width: "150px", height: "100px", objectFit: "cover" }}

@@ -23,7 +23,7 @@ export default function Guests() {
             <div key={g._id} className="guest-card">
               <div className="guest-img-wrapper">
                 <img
-                  src={`http://localhost:5000${g.image}`}
+                  src={`https://genvision-2026-1.onrender.com${g.image}`}
                   alt={g.name}
                   className="guest-img"
                 />

@@ -141,7 +141,7 @@ export default function AddCoordinatorForm() {
             <div className="card h-100 text-center">
               {c.image && (
                 <img
-                  src={`http://localhost:5000${c.image}`}
+                  src={`https://genvision-2026-1.onrender.com${c.image}`}
                   className="card-img-top"
                   alt={c.name}
                   style={{ height: "250px", objectFit: "cover" }}

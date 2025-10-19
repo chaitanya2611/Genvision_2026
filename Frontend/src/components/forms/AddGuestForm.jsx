@@ -152,7 +152,7 @@ export default function AddGuestForm() {
             <div className="card h-100 text-center">
               {g.image && (
                 <img
-                  src={`http://localhost:5000${g.image}`}
+                  src={`https://genvision-2026-1.onrender.com${g.image}`}
                   className="card-img-top"
                   alt={g.name}
                   style={{ height: "400px", objectFit: "cover" }}
