@@ -54,7 +54,7 @@ export default function Navbar() {
       {/* 🏞️ Hero Section (visible only at top) */}
       <header className={`hero-section ${scrolled ? "fade-out" : "fade-in"}`}>
       {/* <section className="hero-section"> */}
-          <h1 className="hero-text">Welcome to GenVision 2025</h1>
+          {/* <h1 className="hero-text"></h1> */}
       {/* </section> */}
       </header>
      
@@ -85,7 +85,7 @@ export default function Navbar() {
               <li className="nav-item"><Link className="nav-link text-black" to="/Events">Events</Link></li>
               <li className="nav-item"><Link className="nav-link text-black" to="/Coordinators">Coordinators</Link></li>
               <li className="nav-item"><Link className="nav-link text-black" to="/Guests">Guests</Link></li>
-              <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Participants">Join Us</Link></li>
+              <li className="nav-item" style={{MarginLeft:"10%"}}><Link className="nav-link text-black register-btn center" to="/Students">Notify Us</Link></li>
             </ul>
             
           </div>

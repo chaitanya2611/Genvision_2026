@@ -20,6 +20,8 @@ import guestRoutes from "./routes/guests.js";
 import coordinatorRoutes from "./routes/coordinators.js";
 import adminRoutes from "./routes/admin.js";
 import aboutRouter from "./routes/about.js";
+import studentRoutes from "./routes/student.js";
+
 
 dotenv.config();
 const app = express();
@@ -29,6 +31,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/events", eventRoutes);
 app.use("/api/participants", participantRoutes);
+app.use("/api/students", studentRoutes);
 app.use("/api/guests", guestRoutes);
 app.use("/api/coordinators", coordinatorRoutes);
 app.use("/api/admin", adminRoutes);

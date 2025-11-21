@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import API from "../api";
 import { Carousel } from "react-bootstrap";
 import "../css/about.css";
-import Countdown from "./CountDown";
+// import Countdown from "./CountDown";
 
 export default function AboutPage() {
   const [about, setAbout] = useState(null);
@@ -40,7 +40,7 @@ export default function AboutPage() {
   if (!about) return <p>Loading...</p>;
 
   const baseURL = "https://genvision-2026-1.onrender.com/api";
-  const eventDate = "2026-01-18T11:59:59";
+  // const eventDate = "2026-01-18T11:59:59";
 
   // LazyImage Component
   const LazyImage = ({ src, alt, style, className }) => {
@@ -181,7 +181,10 @@ export default function AboutPage() {
       </div>
 
       {/* Countdown Section */}
-      <Countdown targetDate={eventDate} />
+      {/* <Countdown targetDate={eventDate} /> */}
+      <div>
+        <h3>Coming Soon</h3>
+      </div>
 
       {/* Events */}
       <div className="row g-4" style={{marginTop:"5%"}}>

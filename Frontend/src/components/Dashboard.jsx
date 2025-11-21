@@ -2,7 +2,8 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import AddEventForm from "./forms/AddEventForm";
 import EditAbout from "./forms/EditAbout";
-import AddParticipantForm from "./forms/AddParticipantForm";
+// import AddParticipantForm from "./forms/AddParticipantForm";
+import AddStudentForm from "./forms/AddStudentForm";
 import AddGuestForm from "./forms/AddGuestForm";
 import AddCoordinatorForm from "./forms/AddCoordinatorForm";
 
@@ -16,7 +17,7 @@ export default function Dashboard() {
         case "about":
         return <EditAbout />;
       case "participants":
-        return <AddParticipantForm />;
+        return <AddStudentForm />;
       case "guests":
         return <AddGuestForm />;
       case "coordinators":

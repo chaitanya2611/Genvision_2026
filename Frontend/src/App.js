@@ -5,6 +5,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Events from "./components/Events";
 import Participants from "./components/Participants";
+import Students from "./components/Students";
 import Guests from "./components/Guests";
 import Coordinators from "./components/Coordinators";
 import Footer from "./components/Footer";
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/" element={<About />} />
             <Route path="/Events" element={<Events />} />
             <Route path="/participants" element={<Participants />} />
+            <Route path="/students" element={<Students />} />
             <Route path="/guests" element={<Guests />} />
             <Route path="/coordinators" element={<Coordinators />} />
             <Route
